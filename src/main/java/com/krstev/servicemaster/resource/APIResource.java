@@ -1,5 +1,6 @@
 package com.krstev.servicemaster.resource;
 
+import com.krstev.servicemaster.models.PrimeNumbers;
 import com.krstev.servicemaster.service.APIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration;
@@ -34,8 +35,8 @@ public class APIResource {
     }
 
     @RequestMapping("/primeNumbers")
-    public List<Integer> primeNumbers(@PathParam(value = "lower") int a, @PathParam(value = "upper") int b) {
-        return apiService.primeNumbers(a, b);
+    public PrimeNumbers primeNumbers(@PathParam(value = "lower") int lower, @PathParam(value = "upper") int upper) {
+        return apiService.primeNumbers(lower, upper);
     }
 
     @RequestMapping("/countVowels")

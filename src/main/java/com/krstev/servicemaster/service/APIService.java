@@ -1,5 +1,8 @@
 package com.krstev.servicemaster.service;
 
+import com.krstev.servicemaster.models.PrimeNumbers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -13,6 +16,9 @@ import java.util.function.IntPredicate;
 @Service
 public class APIService {
 
+    private static final Logger logger = LoggerFactory.getLogger(APIService.class);
+
+
     private IntPredicate vowel = new IntPredicate() {
         @Override
         public boolean test(int t) {
@@ -22,7 +28,8 @@ public class APIService {
         }
     };
 
-    public List<Integer> primeNumbers(int lowerLimit, int upperLimit) {
+    public PrimeNumbers primeNumbers(int lowerLimit, int upperLimit) {
+        logger.info("Lower limit : " + lowerLimit + " Upper limit : " + upperLimit);
         List<Integer> primeNumbers = new LinkedList<>();
         int flag = 0;
         for (int i = lowerLimit; i <= upperLimit; i++) {
@@ -38,7 +45,8 @@ public class APIService {
                 primeNumbers.add(i);
             }
         }
-        return primeNumbers;
+        logger.info("Prime numberes : " + primeNumbers.toString());
+        return new PrimeNumbers(primeNumbers);
     }
 
     public int countVowels(String text) {
