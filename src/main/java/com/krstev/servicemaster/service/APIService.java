@@ -11,7 +11,7 @@ import java.util.function.IntPredicate;
 
 /**
  * @author fkrstev
- * Created on 17-Feb-18
+ *         Created on 17-Feb-18
  */
 @Service
 public class APIService {
@@ -29,6 +29,7 @@ public class APIService {
     };
 
     public PrimeNumbers primeNumbers(int lowerLimit, int upperLimit) {
+        long start = System.currentTimeMillis();
         logger.info("Lower limit : " + lowerLimit + " Upper limit : " + upperLimit);
         List<Integer> primeNumbers = new LinkedList<>();
         int flag = 0;
@@ -45,11 +46,16 @@ public class APIService {
                 primeNumbers.add(i);
             }
         }
-        logger.info("Prime numberes : " + primeNumbers.toString());
+        logger.info("Prime numbers : " + primeNumbers.toString());
+        logger.info("Time in ms :" + (System.currentTimeMillis() - start));
         return new PrimeNumbers(primeNumbers);
     }
 
     public int countVowels(String text) {
-        return (int) text.chars().filter(vowel).count();
+        logger.info("Received text : " + text);
+        long start = System.currentTimeMillis();
+        int res = (int) text.chars().filter(vowel).count();
+        logger.info("Time in ms :" + (System.currentTimeMillis() - start));
+        return res;
     }
 }
